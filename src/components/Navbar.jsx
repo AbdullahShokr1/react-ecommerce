@@ -18,20 +18,8 @@ const NavBar = props => {
                         <li className="nav-item">
                         <NavLink className={({isActive})=>`nav-link ${isActive && 'active'}`} to="shopping-cart">Shopping Cart</NavLink>
                         </li>
-                        <li className="nav-item btn btn-primary position-relative m-2">
-                            items
-                            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                {props.count}
-                            </span>
-                        </li>
                     </ul>
 
-                    <div className="d-flex">
-                        items
-                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {props.count}
-                        </span>
-                    </div>
                 
                 </div>
             </div>

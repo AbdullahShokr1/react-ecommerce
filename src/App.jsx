@@ -18,14 +18,10 @@ function RouteLayout(){
 class App extends Component {
     state = { 
         products:[
-            {id:1,name:"Burger", count:3},
-            {id:2,name:"Fries", count:1},
-            {id:3,name:"cola", count:2},
+            {id:1,name:"Burger", count:0,price:160,isInCart:false},
+            {id:2,name:"Fries", count:0,price:15,isInCart:false},
+            {id:3,name:"cola", count:0,price:10,isInCart:false},
         ],
-    };
-    DeleteItem = (product) => {
-        const products = this.state.products.filter(p=> p.id !== product.id)
-        this.setState({products});
     };
     Rest = ()=>{
         let products = [...this.state.products];
@@ -49,6 +45,16 @@ class App extends Component {
         products[index].count > 0 && products[index].count--;
         this.setState({products});
     } 
+    CartChange = (product) => {
+        //Clone
+        const products = [...this.state.products];
+        const index = products.indexOf(product);
+        products[index] = { ...products[index] };
+        //Edit
+        products[index].isInCart = !products[index].isInCart;
+        //Set State
+        this.setState({ products });
+    };
     render() {
         const router = createBrowserRouter(
         createRoutesFromElements(
@@ -56,14 +62,15 @@ class App extends Component {
             <Route index element={
                 <Home 
                 products={this.state.products}
-                onDelete={this.DeleteItem}
-                onRest={this.Rest}
-                onAdd={this.AddItem}
-                onDecrease={this.decreaseItem}
+                onCart={this.CartChange}
                 />
             }/>
             <Route path="shopping-cart" element={<ShonppingCart 
-                products={this.state.products} OnDelete={this.DeleteItem} OnAdd={this.AddItem} OnDecrease={this.decreaseItem} Rest={this.Rest}
+                products={this.state.products} 
+                OnAdd={this.AddItem} 
+                OnDecrease={this.decreaseItem} 
+                Rest={this.Rest}
+                onCart={this.CartChange}
             />}/>
             <Route path="*" element={<Error/>}/>
             </Route>

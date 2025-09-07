@@ -16,7 +16,7 @@ class Product extends Component {
                 </span>
                 <button className='btn btn-primary m-2' onClick={()=>this.props.OnAdd(this.props.product)}>+</button>
                 <button className='btn btn-secondary m-2' onClick={()=>this.props.OnDecrease(this.props.product)}>-</button>
-                <button className='btn btn-danger' onClick={()=>this.props.OnDelete(this.props.product)}>
+                <button className='btn btn-danger' onClick={()=>this.props.onCart(this.props.product)}>
                     <i className="fas fa-trash"></i>
                 </button>
             </div>

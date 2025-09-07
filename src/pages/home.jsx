@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Product from '../components/product';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Cart from '../components/cart';
 
 
 
@@ -26,8 +27,10 @@ class Home extends Component {
                                     <td>{product.name}</td>
                                     <td>{product.count}</td>
                                     <td>
-                                        <Button variant="success">
-                                            <i className="fas fa-cart-plus"></i>
+                                        <Button variant="light">
+                                            <Cart  product={product} 
+                                                onClick={this.props.onCart} 
+                                            />
                                         </Button>
                                     </td>
                                 </tr>
